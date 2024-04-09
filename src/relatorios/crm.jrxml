@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="crm" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15935938-55e1-41c5-a64b-fe35fb31c31d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT crmState, COUNT(*) as Total
+FROM Doctor
+GROUP BY crmState
+ORDER BY crmState DESC;]]>
+	</queryString>
+	<field name="crmState" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="crmState"/>
+		<property name="com.jaspersoft.studio.field.label" value="crmState"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="doctor"/>
+	</field>
+	<field name="Total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Total"/>
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+	</field>
+	<variable name="totalMedicos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Integer(0)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="10">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="-3" width="515" height="13" backcolor="#E6E6E6" uuid="7848a500-1829-4fb8-a38a-3141b8d7e745"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="-3" width="100" height="13" uuid="bdd18589-a29d-4218-96f6-b9314b0bec22"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="-3" width="40" height="13" backcolor="#E6E6E6" uuid="342cccc5-1969-4c1b-af0d-f394d9b39398"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="d6bfe49a-8b5e-4a1e-89f1-94ad034af580"/>
+				<staticText>
+					<reportElement x="20" y="20" width="300" height="43" forecolor="#FFFFFF" uuid="9977340b-72be-425f-9baa-819a3ba094bc"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Doctors by region]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="d536807f-6dce-452f-8f3c-27540bde4236"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="02da4c71-b0fe-4b79-948a-58cef9b702d6"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2907bc4b-ba5b-4705-9085-6b3f8aa97c59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a64c8989-dba0-4524-bbd1-4d1de8a43f43"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[crmState]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3ba2429f-98eb-4d74-987a-a2126cd986dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e99d95e3-d40c-49e5-9712-5df807a19e4c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="304823b0-94f2-4ca6-ba00-8ad89e44fe89"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="277" height="20" uuid="bb72eeb6-0f51-44ba-875c-f5507625cb9d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a64c8989-dba0-4524-bbd1-4d1de8a43f43"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{crmState}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="277" y="0" width="277" height="20" uuid="2b91a3bc-465a-46b9-9ea2-2ec8b4c0c0f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e99d95e3-d40c-49e5-9712-5df807a19e4c"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="58">
+			<staticText>
+				<reportElement x="380" y="15" width="131" height="30" uuid="f8490510-e558-4125-93c0-6884f9874351"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Total de médicos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="15" width="45" height="30" uuid="4bfa76f3-60f1-4b88-9b7d-e64600e933e9"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalMedicos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
